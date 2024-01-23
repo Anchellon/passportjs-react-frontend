@@ -7,11 +7,16 @@ import {
     RouterProvider,
     Route,
 } from "react-router-dom";
-
+import Login from "./pages/Login";
+const user = null;
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
+            <Route
+                path="/login"
+                element={user ? <Navigate to="/" /> : <Login />}
+            />
             {/* <Route path="about" element={<About />} /> */}
         </Route>
     )

@@ -5,9 +5,7 @@ export default function SharedLayout() {
     return (
         <>
             <FixedNavbar />
-            <div className="px-5 py-4">
-                <Outlet />
-            </div>
+            <Outlet />
         </>
     );
 }

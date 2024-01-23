@@ -9,7 +9,11 @@ export default function FixedNavbar() {
     return (
         <Navbar bg="light" expand="lg">
             <Container>
-                <Navbar.Brand href="#home">My App</Navbar.Brand>
+                <Navbar.Brand>
+                    <Link className="link" to="/">
+                        My App
+                    </Link>
+                </Navbar.Brand>
                 <Nav>
                     <Nav.Link href="#home">Link 1</Nav.Link>
                 </Nav>
