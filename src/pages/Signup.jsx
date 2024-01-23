@@ -3,8 +3,10 @@ import { Form, Button, Alert } from "react-bootstrap";
 import "../assets/css/login.css";
 import { Link } from "react-router-dom";
 
-const Login = () => {
-    const [inputUsername, setInputUsername] = useState("");
+const Signup = () => {
+    const [inputFirstName, setFirstName] = useState("");
+    const [inputLastName, setLastNane] = useState("");
+    const [inputEmail, setinputEmail] = useState("");
     const [inputPassword, setInputPassword] = useState("");
 
     const [show, setShow] = useState(false);
@@ -14,8 +16,10 @@ const Login = () => {
         event.preventDefault();
         setLoading(true);
         await delay(500);
-        console.log(`Username :${inputUsername}, Password :${inputPassword}`);
-        if (inputUsername !== "admin" || inputPassword !== "admin") {
+        console.log(
+            `First Name :${inputFirstName},Last Name :${inputLastName},Email :${inputEmail}, Password :${inputPassword}`
+        );
+        if (inputEmail !== "admin" || inputPassword !== "admin") {
             setShow(true);
         }
         setLoading(false);
@@ -45,27 +49,38 @@ const Login = () => {
                     // src={Logo}
                     alt="logo"
                 />
-                <div className="h4 mb-2 text-center">Welcome Back!</div>
+
+                <div className="h4 mb-2 text-center">Sign up!</div>
+
                 {/* ALert */}
-                {show ? (
-                    <Alert
-                        className="mb-2"
-                        variant="danger"
-                        onClose={() => setShow(false)}
-                        dismissible
-                    >
-                        Incorrect username or password.
-                    </Alert>
-                ) : (
-                    <div />
-                )}
-                <Form.Group className="mb-2" controlId="username">
-                    <Form.Label>Username</Form.Label>
+
+                <Form.Group className="mt-3 mb-2" controlId="Email">
+                    <Form.Label>Firt Name</Form.Label>
                     <Form.Control
                         type="text"
-                        value={inputUsername}
-                        placeholder="Username"
-                        onChange={(e) => setInputUsername(e.target.value)}
+                        value={inputFirstName}
+                        placeholder="First Name"
+                        onChange={(e) => setInputFirstName(e.target.value)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className="mb-2" controlId="Email">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={inputLastName}
+                        placeholder="Last Name"
+                        onChange={(e) => setInputLastName(e.target.value)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className="mb-2" controlId="Email">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={inputEmail}
+                        placeholder="Email"
+                        onChange={(e) => setinputEmail(e.target.value)}
                         required
                     />
                 </Form.Group>
@@ -79,33 +94,10 @@ const Login = () => {
                         required
                     />
                 </Form.Group>
-                <Form.Group
-                    className="mb-2 d-flex justify-content-between"
-                    controlId="checkbox"
-                >
-                    <Form.Check
-                        className="py-2"
-                        type="checkbox"
-                        label="Remember me"
-                    />
-                    <Button
-                        className="text-muted mb-1"
-                        variant="link"
-                        onClick={handlePassword}
-                    >
-                        Forgot password?
-                    </Button>
-                </Form.Group>
-                <div className="pb-3">
-                    Don't have an account?{" "}
-                    <Link className="link" to="/signup">
-                        Sign up!
-                    </Link>
-                </div>
 
                 {!loading ? (
                     <Button className="w-100" variant="primary" type="submit">
-                        Log In
+                        Sign Up
                     </Button>
                 ) : (
                     <Button
@@ -114,9 +106,15 @@ const Login = () => {
                         type="submit"
                         disabled
                     >
-                        Logging In...
+                        Creating Account ...
                     </Button>
                 )}
+                <div className="my-2">
+                    Already have an account?
+                    <Link className="link" to="/login">
+                        Login!
+                    </Link>
+                </div>
                 <div className="text-center">
                     <hr />
                     <p>or Sign in with</p>
@@ -131,4 +129,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;

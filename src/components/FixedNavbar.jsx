@@ -18,14 +18,14 @@ export default function FixedNavbar() {
                     <Nav.Link href="#home">Link 1</Nav.Link>
                 </Nav>
                 <Nav className="ms-auto">
-                    <Nav.Link href="#home">Link 2</Nav.Link>
+                    <Nav.Item href="#home">Link 2</Nav.Item>
                     {/* <Nav.Link href="#features">Features</Nav.Link> */}
                     {!loggedIn && (
-                        <Nav.Link href="#features">
+                        <Nav.Item href="#features">
                             <Link className="link" to="login">
                                 Login
                             </Link>{" "}
-                        </Nav.Link>
+                        </Nav.Item>
                     )}
                     {loggedIn && (
                         <NavDropdown title="{User}" id="basic-nav-dropdown">

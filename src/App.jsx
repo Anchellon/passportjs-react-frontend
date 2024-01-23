@@ -8,6 +8,7 @@ import {
     Route,
 } from "react-router-dom";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 const user = null;
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
                 path="/login"
                 element={user ? <Navigate to="/" /> : <Login />}
             />
+            <Route path="/signup" element={<Signup />} />
             {/* <Route path="about" element={<About />} /> */}
         </Route>
     )
