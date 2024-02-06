@@ -6,7 +6,7 @@ export function useAuth() {
     return useContext(AuthContext);
 }
 
-export default function AuthProivder(props) {
+export default function AuthProvider(props) {
     const [authUser, setAuthUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const initialValue = {
@@ -15,5 +15,9 @@ export default function AuthProivder(props) {
         isLoggedIn,
         setIsLoggedIn,
     };
-    return <AuthContext.Provider value={initialValue}></AuthContext.Provider>;
+    return (
+        <AuthContext.Provider value={initialValue}>
+            {props.children}
+        </AuthContext.Provider>
+    );
 }
