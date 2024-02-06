@@ -13,12 +13,44 @@ const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
-        await delay(500);
+        // await delay(500);
         console.log(`Username :${inputUsername}, Password :${inputPassword}`);
-        if (inputUsername !== "admin" || inputPassword !== "admin") {
-            setShow(true);
-        }
+        // if (inputUsername !== "admin" || inputPassword !== "admin") {
+        //     setShow(true);
+        // }
         setLoading(false);
+        let data = {
+            email: inputUsername,
+            password: inputPassword,
+        };
+        console.log(data);
+        const user = await fetch("http://localhost:3000/login", {
+            method: "post",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => {
+                if (response.status !== 200) {
+                    throw new Error(response.status);
+                }
+                return response.json();
+            })
+            .then((user) => {
+                setLoading(false);
+                setShow(false);
+                console.log(user);
+
+                //  update gloabl context- state
+                // redirect
+            })
+            .catch((err) => {
+                setShow(true);
+                console.log(err);
+            });
     };
 
     const handlePassword = () => {};
