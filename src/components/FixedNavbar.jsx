@@ -3,9 +3,10 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import { NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function FixedNavbar() {
-    let loggedIn = false;
+    const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
     return (
         <Navbar bg="light" expand="lg">
             <Container>
@@ -20,17 +21,20 @@ export default function FixedNavbar() {
                 <Nav className="ms-auto">
                     <Nav.Item href="#home">Link 2</Nav.Item>
                     {/* <Nav.Link href="#features">Features</Nav.Link> */}
-                    {!loggedIn && (
+                    {!isLoggedIn && (
                         <Nav.Item href="#features">
                             <Link className="link" to="login">
                                 Login
                             </Link>{" "}
                         </Nav.Item>
                     )}
-                    {loggedIn && (
-                        <NavDropdown title="{User}" id="basic-nav-dropdown">
+                    {isLoggedIn && (
+                        <NavDropdown
+                            title={`${authUser.firstName}`}
+                            id="basic-nav-dropdown"
+                        >
                             <NavDropdown.Item href="#action/3.1">
-                                Profile
+                                {authUser.firstName}
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">
                                 Another action

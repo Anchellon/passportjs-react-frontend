@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import "../assets/css/login.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
     const [inputUsername, setInputUsername] = useState("");
@@ -9,6 +10,7 @@ const Login = () => {
 
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
+    const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -43,8 +45,10 @@ const Login = () => {
                 setLoading(false);
                 setShow(false);
                 console.log(user);
-
+                setIsLoggedIn(true);
+                setAuthUser(user);
                 //  update gloabl context- state
+
                 // redirect
             })
             .catch((err) => {
